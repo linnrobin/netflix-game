@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import { Box, Grommet, ResponsiveContext } from "grommet";
+
+import Navigation from "./components/Navigation";
+import MainBody from "./components/MainBody";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Grommet theme={theme} full>
+      <ResponsiveContext.Consumer>
+        {(size) => (
+          <Box fill>
+            <Router>
+              <Navigation />
+              <MainBody size={size} />
+            </Router>
+          </Box>
+        )}
+      </ResponsiveContext.Consumer>
+    </Grommet>
   );
 }
+const theme = {
+  global: {
+    colors: {
+      brand: "#228BE6",
+    },
+    font: {
+      family: "Roboto",
+      size: "18px",
+      height: "20px",
+    },
+  },
+};
 
 export default App;
